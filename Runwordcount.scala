@@ -14,11 +14,11 @@ println("开始读取文本文件...")
 val textFile= sc.textFile ("data/wordcount.txt")
 println("开始创建RDD...")
 val countsRDD = textFile.flatMap(line => line.split(" "))
-.map(word-> (word, 1))
+.map(word=> (word, 1))
 .reduceByKey(_ + _)
 println("开始保存到文本文件...")
 try{
-countSRDD.saveAsTextFile("data/output")
+countsRDD.saveAsTextFile("data/output")
 println("已经存盘成功")
 } catch {
 case e: Exception => println("输出目录已经存在,请先删除原有目录");
